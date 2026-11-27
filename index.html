@@ -102,7 +102,7 @@ D.forEach((d,i)=>{d.id=d.show+'|'+d.name;d.t=SHOWS.indexOf(d.show);
   d.grp=d.region==='서울'?tk[0]:d.region==='해외'?tk.slice(0,2).join(' '):tk.slice(0,2).join(' ');
   const g=d.addr.match(/goo\.gl\/maps\/\w+/);d.g=g?'https://'+g[0]:'';
   d.vague=!d.g&&!/\d/.test(d.addr);
-  d.nq=d.name.replace(/\s*\(.*?\)/,'')+' '+(d.region==='서울'?tk[0]:tk.slice(0,2).join(' '));
+  d.nq=d.name.replace(/[()]/g,' ').replace(/\s+/g,' ').trim();
 });
 document.getElementById('total').textContent='· '+D.length+'곳';
 const $=id=>document.getElementById(id);
